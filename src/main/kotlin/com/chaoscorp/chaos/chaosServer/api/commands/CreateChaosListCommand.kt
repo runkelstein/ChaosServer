@@ -1,0 +1,7 @@
+package com.chaoscorp.chaos.chaosServer.api.commands
+
+import javax.validation.constraints.NotBlank
+
+class CreateChaosListCommand(
+        @NotBlank
+        val name : String)
