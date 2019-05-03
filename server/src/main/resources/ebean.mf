@@ -1,0 +1,2 @@
+entity-packages: com.chaoscorp.chaos.chaosServer.data.model
+querybean-packages: com.chaoscorp.chaos.chaosServer.data.model

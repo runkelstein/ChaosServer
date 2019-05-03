@@ -28,3 +28,15 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+
+### custom ###
+/out/
+/build/
+/api/out
+/api/build
+/server/out
+/server/build
+/buildSrc/out
+/buildSrc/build
+pg-drop-all.sql
+pg-create-all.sql
