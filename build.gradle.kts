@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-group = "com.chaoscorp.chaos"
+group = "com.chaoscorp.chaosServer"
 version = "0.0.1-SNAPSHOT"
 
 plugins {
@@ -12,6 +12,7 @@ plugins {
     id("org.jetbrains.kotlin.kapt") version "1.3.21"
     id("io.ebean")
     id("io.spring.dependency-management") version "1.0.7.RELEASE"
+    id("maven-publish")
     `build-scan`
 }
 
@@ -97,7 +98,46 @@ project(":server") {
 
 project(":api") {
 
+    apply {
+        plugin("maven-publish")
+    }
 
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = "com.chaoscorp.chaosServer"
+                artifactId = "chaosServer.api"
+                version = "0.1"
+
+                from(components["java"])
+            }
+        }
+    }
+
+}
+
+project(":client") {
+
+    apply {
+        plugin("maven-publish")
+    }
+
+    dependencies {
+        implementation("io.github.openfeign:feign-jackson:10.2.0")
+        implementation(project(":api"))
+    }
+
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = "com.chaoscorp.chaosServer"
+                artifactId = "chaosServer.client"
+                version = "0.1"
+
+                from(components["java"])
+            }
+        }
+    }
 
 }
 

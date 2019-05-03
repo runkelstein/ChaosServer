@@ -13,4 +13,4 @@ pluginManagement {
 	}
 }
 rootProject.name = 'chaosServer'
-include('server', 'api')
+include('server', 'api', 'client')

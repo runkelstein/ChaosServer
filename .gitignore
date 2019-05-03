@@ -34,6 +34,8 @@ HELP.md
 /build/
 /api/out
 /api/build
+/client/out
+/client/build
 /server/out
 /server/build
 /buildSrc/out

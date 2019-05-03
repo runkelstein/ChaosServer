@@ -4,4 +4,5 @@ import javax.validation.constraints.NotBlank
 
 class CreateChaosListCommand(
         @NotBlank
-        val name : String)
+        val name : String) {
+}
