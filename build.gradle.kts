@@ -5,16 +5,17 @@ version = "0.0.1-SNAPSHOT"
 
 plugins {
     id("org.asciidoctor.convert") version "1.5.3"
-    id("org.springframework.boot") version "2.1.4.RELEASE"
+    id("org.springframework.boot") version "2.1.4.RELEASE" apply false
     id("org.jetbrains.kotlin.jvm") version "1.3.21"
     id("org.jetbrains.kotlin.plugin.spring") version "1.3.21"
-    id("application")
     id("org.jetbrains.kotlin.kapt") version "1.3.21"
     id("io.ebean")
     id("io.spring.dependency-management") version "1.0.7.RELEASE"
     id("maven-publish")
+    `application`
     `build-scan`
 }
+
 
 buildScan {
     setTermsOfServiceUrl("https://gradle.com/terms-of-service")
@@ -54,6 +55,7 @@ allprojects {
 
 project(":server") {
 
+
     apply {
         plugin("org.jetbrains.kotlin.plugin.spring")
         plugin("org.springframework.boot")
@@ -80,7 +82,6 @@ project(":server") {
         implementation(project(":api"))
     }
 
-
     tasks.withType<Test> {
         //useJUnitPlatform()
         testLogging.showStandardStreams = true
@@ -96,20 +97,26 @@ project(":server") {
 
 }
 
-project(":api") {
+allprojects {
 
-    apply {
-        plugin("maven-publish")
-    }
+    val publishModules = setOf("api", "client")
+    val moduleName =name
 
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = "com.chaoscorp.chaosServer"
-                artifactId = "chaosServer.api"
-                version = "0.1"
+    if (moduleName in publishModules) {
 
-                from(components["java"])
+        apply {
+            plugin("maven-publish")
+        }
+
+        publishing {
+            publications {
+                create<MavenPublication>("maven") {
+                    groupId = "com.chaoscorp.chaosServer"
+                    artifactId = "chaosServer.$moduleName"
+                    version = "0.1"
+
+                    from(components["java"])
+                }
             }
         }
     }
@@ -118,39 +125,9 @@ project(":api") {
 
 project(":client") {
 
-    apply {
-        plugin("maven-publish")
-    }
-
     dependencies {
         implementation("io.github.openfeign:feign-jackson:10.2.0")
         implementation(project(":api"))
     }
 
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = "com.chaoscorp.chaosServer"
-                artifactId = "chaosServer.client"
-                version = "0.1"
-
-                from(components["java"])
-            }
-        }
-    }
-
 }
-
-/*
-test {
-	outputs.dir snippetsDir
-}
-*/
-
-/*
-asciidoctor {
-	inputs.dir snippetsDir
-	dependsOn test
-}
-*/
-
