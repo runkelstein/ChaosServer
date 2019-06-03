@@ -1,28 +1,26 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-group = "com.chaoscorp.chaosServer"
-version = "0.0.1-SNAPSHOT"
+group = Properties.groupId
+version = Properties.versionId
 
 plugins {
-    id("org.asciidoctor.convert") version "1.5.3"
-    id("org.springframework.boot") version "2.1.4.RELEASE" apply false
-    id("org.jetbrains.kotlin.jvm") version "1.3.21"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.3.21"
-    id("org.jetbrains.kotlin.kapt") version "1.3.21"
-    id("io.ebean")
-    id("io.spring.dependency-management") version "1.0.7.RELEASE"
-    id("maven-publish")
-    `application`
+    kotlinJvmPlugin
+    kotlinSpringPlugin
+    kotlinKaptPlugin
+    springBootPlugin apply false
+    springDependencyPlugin
+    asciiDoctorPlugin
+    ebeanPlugin
+    mavenPublishPlugin
+    application
     `build-scan`
 }
-
 
 buildScan {
     setTermsOfServiceUrl("https://gradle.com/terms-of-service")
     setTermsOfServiceAgree("yes")
     publishAlways()
 }
-
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -32,7 +30,7 @@ java {
 allprojects {
 
     apply {
-        plugin("org.jetbrains.kotlin.jvm")
+        plugin(kotlinJvmPluginId)
     }
 
     repositories {
@@ -40,8 +38,8 @@ allprojects {
     }
 
     dependencies {
-        implementation("org.hibernate.validator:hibernate-validator:6.0.16.Final")
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.7")
+        hibernateValidationLib
+        jacksonKotlinLib
     }
 
     tasks.withType<KotlinCompile> {
@@ -55,44 +53,43 @@ allprojects {
 
 project(":server") {
 
-
     apply {
-        plugin("org.jetbrains.kotlin.plugin.spring")
-        plugin("org.springframework.boot")
-        plugin("org.jetbrains.kotlin.kapt")
-        plugin("io.ebean")
-        plugin("io.spring.dependency-management")
+        plugin(kotlinSpringPluginId)
+        plugin(springBootPluginId)
+        plugin(kotlinKaptPluginId)
+        plugin(ebeanPluginId)
+        plugin(springDependencyPluginId)
         plugin("application")
     }
 
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-actuator")
-        implementation("org.springframework.boot:spring-boot-starter-web")
-        implementation("org.jetbrains.kotlin:kotlin-reflect")
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        implementation("io.ebean:ebean:11.37.1")
-        implementation("io.ebean:ebean-querybean:11.37.1")
-        implementation("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final")
-        implementation("com.h2database:h2")
-        implementation("org.mapstruct:mapstruct:1.3.0.Final")
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
-        testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
-        kapt("org.mapstruct:mapstruct-processor:1.3.0.Final")
-        kapt("io.ebean:kotlin-querybean-generator:11.37.1")
+        springBootStarterActuatorLib
+        springBootStarterWebLib
+        kotlinReflectLib
+        kotlinJdk8Lib
+        ebeanLib
+        ebeanQueryLib
+        hibernateJpaApiLib
+        h2DataBaseLib
+        mapstructLib
+        springBootStarterTestLib
+        springRestDocsMockMvcTestLib
+        mapstrucProcessorKaptLib
+        ebeanQueryGeneratorKaptLib
         implementation(project(":api"))
     }
-
-    tasks.withType<Test> {
-        //useJUnitPlatform()
-        testLogging.showStandardStreams = true
-    }
+//
+//    tasks.withType<Test> {
+//        //useJUnitPlatform()
+//        testLogging.showStandardStreams = true
+//    }
 
     ebean {
         debugLevel = 1
     }
 
     application {
-        mainClassName = "com.chaoscorp.chaosServer.App"
+        mainClassName = "${Properties.groupId}.App"
     }
 
 }
@@ -105,15 +102,15 @@ allprojects {
     if (moduleName in publishModules) {
 
         apply {
-            plugin("maven-publish")
+            plugin(mavenPublishPluginId)
         }
 
         publishing {
             publications {
                 create<MavenPublication>("maven") {
-                    groupId = "com.chaoscorp.chaosServer"
-                    artifactId = "chaosServer.$moduleName"
-                    version = "0.1"
+                    groupId = Properties.groupId
+                    artifactId = Properties.getFullArtifactId(moduleName)
+                    version = Properties.versionId
 
                     from(components["java"])
                 }
@@ -126,7 +123,7 @@ allprojects {
 project(":client") {
 
     dependencies {
-        implementation("io.github.openfeign:feign-jackson:10.2.0")
+        feignJacksonLib
         implementation(project(":api"))
     }
 
