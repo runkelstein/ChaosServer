@@ -17,6 +17,13 @@ data class ChaosItem(
 
         @ManyToOne
         @JoinColumn(name = "chaosList", referencedColumnName="id")
-        var chaosList : ChaosList
+        var chaosList : ChaosList? = null,
+
+        @ManyToOne
+        @JoinColumn(name = "chaosItem", referencedColumnName="id")
+        val parent : ChaosItem? = null,
+
+        @OneToMany(mappedBy = "parent", cascade = arrayOf(CascadeType.ALL))
+        var items : MutableList<ChaosItem> = ArrayList()
 
 )

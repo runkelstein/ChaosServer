@@ -3,10 +3,9 @@ package com.chaoscorp.chaosServer.controller
 import com.chaoscorp.chaosServer.api.commands.ChangeChaosListCommand
 import com.chaoscorp.chaosServer.api.commands.CreateChaosListCommand
 import com.chaoscorp.chaosServer.api.dto.ChaosListDto
-import com.chaoscorp.chaosServer.data.mapper.ChaosMapper
+import com.chaoscorp.chaosServer.data.mapper.IChaosMapper
 import com.chaoscorp.chaosServer.data.model.ChaosList
 import com.chaoscorp.chaosServer.repositories.ChaosListRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
@@ -16,10 +15,9 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/chaosList")
 @Component
-class ChaosListController(val listRepo : ChaosListRepository) {
-
-    @Autowired
-    lateinit var chaosMapper : ChaosMapper;
+class ChaosListController(
+    val listRepo : ChaosListRepository,
+    val chaosMapper : IChaosMapper) {
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
@@ -30,9 +28,20 @@ class ChaosListController(val listRepo : ChaosListRepository) {
         return chaosMapper.convertToDto(newList)
     }
 
+    @GetMapping("/get/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    fun getList(@PathVariable id : Long)
+            : ResponseEntity<ChaosListDto>
+    {
+        val list = listRepo.findById(id) ?:
+            return ResponseEntity.status(404).build();
+
+        return ResponseEntity.ok(chaosMapper.convertToDto(list));
+    }
+
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
-    fun deleteList(@RequestParam id : Long) {
+    fun deleteList(@PathVariable id : Long) {
 
         listRepo.deleteById(id);
 

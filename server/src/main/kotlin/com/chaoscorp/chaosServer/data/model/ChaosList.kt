@@ -9,8 +9,8 @@ data class ChaosList(
     @Id
     var id : Long = 0,
 
-    @OneToMany(mappedBy = "chaosList")
-    var items : List<ChaosItem> = ArrayList(),
+    @OneToMany(mappedBy = "chaosList", cascade = arrayOf(CascadeType.ALL))
+    var items : MutableList<ChaosItem> = ArrayList(),
 
     @Column
     var name : String = ""
