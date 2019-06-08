@@ -23,9 +23,6 @@ class EbeanServerFactory : FactoryBean<EbeanServer> {
         config.name = "db"
         config.loadFromProperties();
 
-        config.isDefaultServer = true;
-        config.isRegister = true;
-
         server = EbeanServerFactory.create(config)
 
         importTestData();

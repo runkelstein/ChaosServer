@@ -47,4 +47,12 @@ class ChaosItemController(
         return ok(chaosMapper.convertToDto(newItem))
     }
 
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    fun deleteList(@PathVariable id : Long) {
+
+        itemRepo.deleteById(id);
+
+    }
+
 }
