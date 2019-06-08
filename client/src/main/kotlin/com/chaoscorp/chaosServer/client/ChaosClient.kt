@@ -1,13 +1,21 @@
 package com.chaoscorp.chaosServer.client
 
+import com.chaoscorp.chaosServer.api.commands.AddChaosItemCommand
 import com.chaoscorp.chaosServer.api.commands.ChangeChaosListCommand
 import com.chaoscorp.chaosServer.api.commands.CreateChaosListCommand
+import com.chaoscorp.chaosServer.api.dto.ChaosItemDto
 import com.chaoscorp.chaosServer.api.dto.ChaosListDto
 import feign.Headers
 import feign.Param
 import feign.RequestLine
 
-interface ChaosListClient {
+interface ChaosClient {
+
+    // list commands
+
+    @RequestLine("GET /chaosList/get/{id}")
+    @Headers("Content-Type: application/json")
+    fun getList(@Param("id") id:Long) : ChaosListDto
 
     @RequestLine("POST /chaosList/create")
     @Headers("Content-Type: application/json")
@@ -20,4 +28,10 @@ interface ChaosListClient {
     @RequestLine("DELETE /chaosList/delete/{id}")
     @Headers("Content-Type: application/json")
     fun deleteList(@Param("id") id:Long) : ChaosListDto
+
+    // item commands
+
+    @RequestLine("POST /chaosItem/add")
+    @Headers("Content-Type: application/json")
+    fun addItem(command : AddChaosItemCommand) : ChaosItemDto
 }

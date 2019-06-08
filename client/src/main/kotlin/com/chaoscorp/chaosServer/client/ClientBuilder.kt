@@ -6,11 +6,11 @@ import feign.jackson.JacksonEncoder
 
 object ClientBuilder {
 
-    fun createChaosListClient(serverHost : String) : ChaosListClient {
+    fun createChaosListClient(serverHost : String) : ChaosClient {
         return Feign.builder()
             .encoder(JacksonEncoder())
             .decoder(JacksonDecoder())
-            .target(ChaosListClient::class.java, serverHost)
+            .target(ChaosClient::class.java, serverHost)
     }
 
 }
