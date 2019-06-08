@@ -34,11 +34,15 @@ HELP.md
 /build/
 /api/out
 /api/build
+/api/target
 /client/out
 /client/build
+/client/target
 /server/out
 /server/build
+/server/target
 /buildSrc/out
 /buildSrc/build
+/buildSrc/target
 pg-drop-all.sql
 pg-create-all.sql

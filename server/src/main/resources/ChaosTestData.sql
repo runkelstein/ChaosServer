@@ -1,3 +1,4 @@
+insert into chaosList(`name`) values( 'Simple List');
 insert into chaosList(`name`) values( 'Frauen ansprechen');
 set @listidx = SELECT MAX(rownum)  from (SELECT ROWNUM() FROM chaosList);
 insert into chaositem(`done`,`content`,`chaoslist`) values (0, 'Anlächeln', @listidx);

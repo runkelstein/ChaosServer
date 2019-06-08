@@ -63,6 +63,7 @@ project(":server") {
     }
 
     dependencies {
+        // implementation
         springBootStarterActuatorLib
         springBootStarterWebLib
         kotlinReflectLib
@@ -72,17 +73,24 @@ project(":server") {
         hibernateJpaApiLib
         h2DataBaseLib
         mapstructLib
-        springBootStarterTestLib
-        springRestDocsMockMvcTestLib
         mapstrucProcessorKaptLib
         ebeanQueryGeneratorKaptLib
+
+        // testing
+        springBootStarterTestLib
+        springRestDocsMockMvcTestLib
+        karateApachTestLib
+        karateJunitTestLib
+        ebeanTestConfigLib
+
+        // projects
         implementation(project(":api"))
     }
-//
-//    tasks.withType<Test> {
-//        //useJUnitPlatform()
-//        testLogging.showStandardStreams = true
-//    }
+
+    tasks.withType<Test> {
+        //useJUnitPlatform()
+        testLogging.showStandardStreams = true
+    }
 
     ebean {
         debugLevel = 1

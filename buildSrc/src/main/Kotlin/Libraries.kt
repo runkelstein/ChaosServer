@@ -35,6 +35,9 @@ val DependencyHandler.kotlinJdk8Lib : Dependency? get() =
 val DependencyHandler.ebeanLib : Dependency? get() =
     impl("io.ebean:ebean:${Versions.Ebean}")
 
+val DependencyHandler.ebeanTestConfigLib : Dependency? get() =
+    test("io.ebean.test:ebean-test-config:${Versions.Ebean}")
+
 val DependencyHandler.ebeanQueryLib : Dependency? get() =
     impl("io.ebean:ebean-querybean:${Versions.Ebean}")
 
@@ -58,3 +61,9 @@ val DependencyHandler.mapstrucProcessorKaptLib : Dependency? get() =
 
 val DependencyHandler.feignJacksonLib : Dependency? get() =
     impl("io.github.openfeign:feign-jackson:${Versions.FeignJackson}")
+
+val DependencyHandler.karateApachTestLib : Dependency? get() =
+    test("com.intuit.karate:karate-apache:${Versions.Karate}")
+
+val DependencyHandler.karateJunitTestLib : Dependency? get() =
+    test("com.intuit.karate:karate-junit4:${Versions.Karate}")

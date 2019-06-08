@@ -6,14 +6,8 @@ import org.springframework.beans.factory.FactoryBean
 import org.springframework.stereotype.Component
 import io.ebean.config.ServerConfig
 import io.ebean.EbeanServerFactory
-import io.ebean.SqlUpdate
-import org.h2.tools.Server
-import org.h2.jdbcx.JdbcDataSource
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.io.ResourceLoader
-import java.io.File
-import javax.annotation.Resource
-
 
 @Component
 class EbeanServerFactory : FactoryBean<EbeanServer> {
@@ -25,17 +19,12 @@ class EbeanServerFactory : FactoryBean<EbeanServer> {
 
     override fun getObject(): EbeanServer? {
 
-        val ds = JdbcDataSource()
-        ds.setURL("jdbc:h2:~/test")
-        ds.user = "sa"
-
         val config = ServerConfig()
-        config.name = "pg"
-        config.isDdlGenerate = true
-        config.isDdlRun = true
-        config.dataSource = ds
+        config.name = "db"
+        config.loadFromProperties();
 
-        startH2Server()
+        config.isDefaultServer = true;
+        config.isRegister = true;
 
         server = EbeanServerFactory.create(config)
 
@@ -53,11 +42,6 @@ class EbeanServerFactory : FactoryBean<EbeanServer> {
 
         val sqlContent = fileResource.file.readLines().joinToString("\r\n")
         server.execute(DB.sqlUpdate(sqlContent))
-    }
-
-    fun startH2Server() {
-
-        Server.createWebServer().start()
     }
 
     override fun getObjectType(): Class<*>? {

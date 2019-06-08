@@ -12,6 +12,6 @@ interface IChaosMapper {
 
     fun convertToDto(list : ChaosList) : ChaosListDto
     fun convertToDto(list : ChaosItem) : ChaosItemDto
-    
+
     fun convertToModel(dto : ChaosItemDto) : ChaosItem
 }
