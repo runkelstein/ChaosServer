@@ -47,8 +47,8 @@ class ChaosListController(
 
     }
 
-    @PutMapping("/change")
-    fun changeList(@RequestParam id : Long,
+    @PutMapping("/change/{id}")
+    fun changeList(@PathVariable id : Long,
                    @RequestBody @Valid command : ChangeChaosListCommand) : ResponseEntity<ChaosListDto> {
 
         val list = listRepo.findById(id) ?:
