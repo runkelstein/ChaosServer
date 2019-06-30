@@ -30,6 +30,7 @@ HELP.md
 .vscode/
 
 ### custom ###
+/target/
 /out/
 /build/
 /api/out

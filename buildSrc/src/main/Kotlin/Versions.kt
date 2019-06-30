@@ -11,7 +11,7 @@ object Versions {
 
     val HibernateValidator ="6.0.16.Final"
     val HibernateJpaApi = "1.0.2.Final"
-    val JacksonKotlin = "2.9.7"
+    val Jackson = "2.9.7"
     val MapStruct = "1.3.0.Final"
     val FeignJackson = "10.2.0"
 

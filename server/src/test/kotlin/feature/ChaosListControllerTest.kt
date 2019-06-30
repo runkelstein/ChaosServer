@@ -8,9 +8,8 @@ import org.junit.BeforeClass
 import org.junit.runner.RunWith
 import org.springframework.boot.test.context.SpringBootTest
 
-@RunWith(Karate::class)
-@SpringBootTest(classes = arrayOf(AppConfig::class))
-@CucumberOptions(features = arrayOf("classpath:feature/ChaosListController.feature"))
+//@RunWith(Karate::class)
+//@CucumberOptions(features = arrayOf("classpath:feature/ChaosListController.feature"))
 class ChaosListControllerTest {
 
     companion object {

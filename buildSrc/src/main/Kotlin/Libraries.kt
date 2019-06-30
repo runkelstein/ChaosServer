@@ -11,6 +11,7 @@ fun DependencyHandler.test(dependencyNotation: Any): Dependency? =
 fun DependencyHandler.`kapt`(dependencyNotation: Any): Dependency? =
     add("kapt", dependencyNotation)
 
+
 val DependencyHandler.hibernateValidationLib : Dependency? get() =
     impl("org.hibernate.validator:hibernate-validator:${Versions.HibernateValidator}")
 
@@ -18,7 +19,10 @@ val DependencyHandler.hibernateJpaApiLib : Dependency? get() =
     impl("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:${Versions.HibernateJpaApi}")
 
 val DependencyHandler.jacksonKotlinLib : Dependency? get() =
-    impl("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.JacksonKotlin}")
+    impl("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.Jackson}")
+
+val DependencyHandler.jacksonYamlLib : Dependency? get() =
+    impl("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${Versions.Jackson}")
 
 val DependencyHandler.springBootStarterActuatorLib : Dependency? get() =
     impl("org.springframework.boot:spring-boot-starter-actuator")
@@ -61,6 +65,8 @@ val DependencyHandler.mapstrucProcessorKaptLib : Dependency? get() =
 
 val DependencyHandler.feignJacksonLib : Dependency? get() =
     impl("io.github.openfeign:feign-jackson:${Versions.FeignJackson}")
+
+
 
 val DependencyHandler.karateApachTestLib : Dependency? get() =
     test("com.intuit.karate:karate-apache:${Versions.Karate}")
