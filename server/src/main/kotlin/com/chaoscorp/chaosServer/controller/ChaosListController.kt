@@ -3,7 +3,6 @@ package com.chaoscorp.chaosServer.controller
 import com.chaoscorp.chaosServer.api.commands.ChangeChaosListCommand
 import com.chaoscorp.chaosServer.api.commands.CreateChaosListCommand
 import com.chaoscorp.chaosServer.api.dto.ChaosListDto
-import com.chaoscorp.chaosServer.data.mapper.DocumentMapper
 import com.chaoscorp.chaosServer.data.mapper.IChaosMapper
 import com.chaoscorp.chaosServer.data.model.ChaosList
 import com.chaoscorp.chaosServer.repositories.ChaosListRepository
@@ -24,10 +23,9 @@ class ChaosListController(
     @ResponseStatus(HttpStatus.CREATED)
     fun createList(@RequestBody @Valid command : CreateChaosListCommand) : ChaosListDto {
 
-        val mapper = DocumentMapper()
         val newList = listRepo.create(ChaosList(
             name = command.name,
-            doc = mapper.asString(command.doc)));
+            doc = command.doc));
         
         return chaosMapper.convertToDto(newList)
     }

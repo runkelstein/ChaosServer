@@ -4,7 +4,7 @@ import com.chaoscorp.chaosServer.api.dto.ChaosListDto
 import com.chaoscorp.chaosServer.data.model.ChaosList
 import org.mapstruct.Mapper
 
-@Mapper(componentModel = "spring", uses = arrayOf(DocumentMapper::class))
+@Mapper(componentModel = "spring")
 interface IChaosMapper {
 
     fun convertToDto(list : ChaosList) : ChaosListDto

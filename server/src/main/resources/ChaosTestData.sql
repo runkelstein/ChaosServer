@@ -1,9 +1,11 @@
---insert into chaosList(`name`) values( 'Simple List');
---insert into chaosList(`name`) values( 'Simple List 2');
---insert into chaosList(`name`) values( 'Frauen ansprechen');
+delete from chaosList;
+
+insert into chaosList(`name`,`doc`) values( 'Simple List','title: Simple List');
+insert into chaosList(`name`,`doc`) values( 'Simple List 2','title: Simple List 2');
+insert into chaosList(`name`,`doc`) values( 'Frauen ansprechen','title: Frauen ansprechen');
 
 insert into chaosList(`name`, `doc`) values('Simple List 3',
-concat('title: document',
+concat_ws(CHAR(10),'title: Simple List 3',
 'items:',
 '  - type: text',
 '    level: 0',
