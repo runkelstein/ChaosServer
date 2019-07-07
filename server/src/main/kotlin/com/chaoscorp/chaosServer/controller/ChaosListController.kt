@@ -3,6 +3,7 @@ package com.chaoscorp.chaosServer.controller
 import com.chaoscorp.chaosServer.api.commands.ChangeChaosListCommand
 import com.chaoscorp.chaosServer.api.commands.CreateChaosListCommand
 import com.chaoscorp.chaosServer.api.dto.ChaosListDto
+import com.chaoscorp.chaosServer.api.dto.ChaosListSimpleDto
 import com.chaoscorp.chaosServer.data.mapper.IChaosMapper
 import com.chaoscorp.chaosServer.data.model.ChaosList
 import com.chaoscorp.chaosServer.repositories.ChaosListRepository
@@ -18,6 +19,14 @@ import javax.validation.Valid
 class ChaosListController(
     val listRepo : ChaosListRepository,
     val chaosMapper : IChaosMapper) {
+
+    @GetMapping("/listing")
+    @ResponseStatus(HttpStatus.OK)
+    fun list() : List<ChaosListSimpleDto> {
+
+        val all = listRepo.findAll()
+        return chaosMapper.convertToDto(all)
+    }
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
@@ -57,6 +66,7 @@ class ChaosListController(
             return ResponseEntity.status(404).build();
 
         list.name = command.name;
+        list.doc = command.doc;
         listRepo.save(list);
 
         return ResponseEntity.ok(chaosMapper.convertToDto(list));
