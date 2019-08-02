@@ -8,26 +8,25 @@ import feign.Headers
 import feign.Param
 import feign.RequestLine
 
+@Headers("Content-Type: application/json")
 interface ChaosClient {
 
-    // list commands
-    @RequestLine("GET /chaosList/listing")
-    @Headers("Content-Type: application/json")
-    fun getListing() : List<ChaosListSimpleDto>
+    @RequestLine("POST /auth/googleSignin")
+    @Headers("idGoogleToken: {idToken}")
+    fun googleSignin(@Param("idToken") idToken:String) : List<ChaosListSimpleDto>
+
+    @RequestLine("GET /chaosList/listing/{idUser}")
+    fun getListing(@Param("idUser") idUser:Long) : List<ChaosListSimpleDto>
 
     @RequestLine("GET /chaosList/get/{id}")
-    @Headers("Content-Type: application/json")
     fun getList(@Param("id") id:Long) : ChaosListDto
 
     @RequestLine("POST /chaosList/create")
-    @Headers("Content-Type: application/json")
     fun createList(command : CreateChaosListCommand) : ChaosListDto
 
     @RequestLine("PUT /chaosList/change/{id}")
-    @Headers("Content-Type: application/json")
     fun changeList(@Param("id") id:Long, command : ChangeChaosListCommand) : ChaosListDto
 
     @RequestLine("DELETE /chaosList/delete/{id}")
-    @Headers("Content-Type: application/json")
     fun deleteList(@Param("id") id:Long) : ChaosListDto
 }

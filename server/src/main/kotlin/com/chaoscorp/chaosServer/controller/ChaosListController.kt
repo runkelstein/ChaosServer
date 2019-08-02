@@ -6,48 +6,55 @@ import com.chaoscorp.chaosServer.api.dto.ChaosListDto
 import com.chaoscorp.chaosServer.api.dto.ChaosListSimpleDto
 import com.chaoscorp.chaosServer.data.mapper.IChaosMapper
 import com.chaoscorp.chaosServer.data.model.ChaosList
+import com.chaoscorp.chaosServer.exception.EntityNotFoundException
 import com.chaoscorp.chaosServer.repositories.ChaosListRepository
+import com.chaoscorp.chaosServer.repositories.UserRepository
 import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
+// todo: validate signed in user: write @Authorize annotation
 @RestController
 @RequestMapping("/chaosList")
 @Component
 class ChaosListController(
     val listRepo : ChaosListRepository,
+    val userRepo : UserRepository,
     val chaosMapper : IChaosMapper) {
 
-    @GetMapping("/listing")
+    @GetMapping("/listing/{idUser}")
     @ResponseStatus(HttpStatus.OK)
-    fun list() : List<ChaosListSimpleDto> {
+    fun list(@PathVariable idUser : Long) : List<ChaosListSimpleDto> {
 
-        val all = listRepo.findAll()
-        return chaosMapper.convertToDto(all)
+        val all = listRepo.findAllForUser(idUser)
+        return all.map { chaosMapper.convertToSimpleDto(it) }
+
     }
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     fun createList(@RequestBody @Valid command : CreateChaosListCommand) : ChaosListDto {
 
+        val user = userRepo.findById(command.idUser) ?:
+            throw EntityNotFoundException("User ${command.idUser} does not exist")
+
         val newList = listRepo.create(ChaosList(
             name = command.name,
-            doc = command.doc));
+            doc = command.doc,
+            user = user));
         
         return chaosMapper.convertToDto(newList)
     }
 
     @GetMapping("/get/{id}")
     @ResponseStatus(HttpStatus.OK)
-    fun getList(@PathVariable id : Long)
-            : ResponseEntity<ChaosListDto>
+    fun getList(@PathVariable id : Long) : ChaosListDto
     {
         val list = listRepo.findById(id) ?:
-            return ResponseEntity.status(404).build();
+            throw EntityNotFoundException("List $id does not exist")
 
-        return ResponseEntity.ok(chaosMapper.convertToDto(list));
+        return chaosMapper.convertToDto(list);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -60,16 +67,16 @@ class ChaosListController(
 
     @PutMapping("/change/{id}")
     fun changeList(@PathVariable id : Long,
-                   @RequestBody @Valid command : ChangeChaosListCommand) : ResponseEntity<ChaosListDto> {
+                   @RequestBody @Valid command : ChangeChaosListCommand) : ChaosListDto {
 
         val list = listRepo.findById(id) ?:
-            return ResponseEntity.status(404).build();
+            throw EntityNotFoundException("List $id does not exist")
 
         list.name = command.name;
         list.doc = command.doc;
         listRepo.save(list);
 
-        return ResponseEntity.ok(chaosMapper.convertToDto(list));
+        return chaosMapper.convertToDto(list);
     }
 
 }

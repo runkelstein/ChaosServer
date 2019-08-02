@@ -10,6 +10,10 @@ data class ChaosList(
 
     @Id
     var id : Long = 0,
+    
+    @ManyToOne
+    @JoinColumn(name="IdUser")
+    var user : User = User(),
 
     @DbJson(storage = DbJsonType.VARCHAR)
     var doc : Document = Document(),
