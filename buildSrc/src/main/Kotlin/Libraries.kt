@@ -66,7 +66,8 @@ val DependencyHandler.mapstrucProcessorKaptLib : Dependency? get() =
 val DependencyHandler.feignJacksonLib : Dependency? get() =
     impl("io.github.openfeign:feign-jackson:${Versions.FeignJackson}")
 
-
+val DependencyHandler.googleApiClient : Dependency? get() =
+    impl("com.google.api-client:google-api-client:${Versions.GoogleApiClient}")
 
 val DependencyHandler.karateApachTestLib : Dependency? get() =
     test("com.intuit.karate:karate-apache:${Versions.Karate}")

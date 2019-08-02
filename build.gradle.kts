@@ -76,6 +76,7 @@ project(":server") {
         mapstrucProcessorKaptLib
         ebeanQueryGeneratorKaptLib
         jacksonYamlLib
+        googleApiClient
 
         // testing
         springBootStarterTestLib

@@ -3,6 +3,7 @@ import org.gradle.plugin.use.PluginDependencySpec
 
 object Versions {
 
+    val GoogleApiClient = "1.30.2"
     val Kotlin = "1.3.21"
     val Ebean = "11.37.1"
     val SpringBoot = "2.1.4.RELEASE"
