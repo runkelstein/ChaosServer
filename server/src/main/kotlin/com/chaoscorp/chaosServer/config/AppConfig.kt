@@ -20,9 +20,6 @@ class AppConfig {
     @Bean
     fun googleHttpTransport() : HttpTransport {
         val transport = GoogleNetHttpTransport.newTrustedTransport()!!;
-
-        transport.
-
         return transport;
     }
 
