@@ -8,7 +8,6 @@ import org.springframework.beans.factory.FactoryBean
 import org.springframework.stereotype.Component
 import io.ebean.config.ServerConfig
 import io.ebean.EbeanServerFactory
-import io.ebean.config.dbplatform.DbType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.io.ResourceLoader
 

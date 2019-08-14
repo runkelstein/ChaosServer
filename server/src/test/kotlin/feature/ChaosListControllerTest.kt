@@ -15,7 +15,7 @@ import testUtils.TestAppConfig
 @KarateOptions(features = arrayOf("classpath:features/ChaosListController.feature"))
 class ChaosListControllerTest {
 
-    @SpringBootTest( classes=arrayOf(AppConfig::class, TestAppConfig::class, App::class), webEnvironment= SpringBootTest.WebEnvironment.DEFINED_PORT)
+    @SpringBootTest(classes=arrayOf(AppConfig::class, TestAppConfig::class, App::class), webEnvironment= SpringBootTest.WebEnvironment.DEFINED_PORT)
     companion object {
 
         @JvmStatic

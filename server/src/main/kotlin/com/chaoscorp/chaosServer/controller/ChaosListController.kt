@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
-// todo: validate signed in user: write @Authorize annotation
 @RestController
 @RequestMapping("/chaosList")
 @Component

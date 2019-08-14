@@ -10,8 +10,4 @@ spring:
     password:
 
 chaosServer:
-  #googleClientId: 580716329785-9miqrpmo48m5cu1uqabtigvgpna0m512.apps.googleusercontent.com
-  googleClientId: 407408718192.apps.googleusercontent.com
-#logging.level.io.ebean.SQL: TRACE
-#logging.level.io.ebean.TXN: TRACE
-#logging.level.io.ebean.SUM: TRACE
+  googleClientId: 580716329785-9miqrpmo48m5cu1uqabtigvgpna0m512.apps.googleusercontent.com

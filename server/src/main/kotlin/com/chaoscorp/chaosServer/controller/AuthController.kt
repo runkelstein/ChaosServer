@@ -8,10 +8,6 @@ import com.chaoscorp.chaosServer.repositories.UserRepository
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.web.bind.annotation.*
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
-import com.google.api.client.http.HttpTransport
-import com.google.api.client.json.JsonFactory
-import org.springframework.beans.factory.annotation.Value
 
 @RestController
 @RequestMapping("/auth")
