@@ -1,5 +1,6 @@
 package com.chaoscorp.chaosServer.controller
 
+import com.chaoscorp.chaosServer.aop.Authorize
 import com.chaoscorp.chaosServer.api.commands.ChangeChaosListCommand
 import com.chaoscorp.chaosServer.api.commands.CreateChaosListCommand
 import com.chaoscorp.chaosServer.api.dto.ChaosListDto
@@ -23,6 +24,7 @@ class ChaosListController(
     val userRepo : UserRepository,
     val chaosMapper : IChaosMapper) {
 
+    @Authorize
     @GetMapping("/listing/{idUser}")
     @ResponseStatus(HttpStatus.OK)
     fun list(@PathVariable idUser : Long) : List<ChaosListSimpleDto> {
@@ -32,6 +34,7 @@ class ChaosListController(
 
     }
 
+    @Authorize
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     fun createList(@RequestBody @Valid command : CreateChaosListCommand) : ChaosListDto {
@@ -47,6 +50,7 @@ class ChaosListController(
         return chaosMapper.convertToDto(newList)
     }
 
+    @Authorize
     @GetMapping("/get/{id}")
     @ResponseStatus(HttpStatus.OK)
     fun getList(@PathVariable id : Long) : ChaosListDto
@@ -57,6 +61,7 @@ class ChaosListController(
         return chaosMapper.convertToDto(list);
     }
 
+    @Authorize
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
     fun deleteList(@PathVariable id : Long) {
@@ -65,6 +70,7 @@ class ChaosListController(
 
     }
 
+    @Authorize
     @PutMapping("/change/{id}")
     fun changeList(@PathVariable id : Long,
                    @RequestBody @Valid command : ChangeChaosListCommand) : ChaosListDto {

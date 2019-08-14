@@ -1,5 +1,10 @@
+spring.main.allow-bean-definition-overriding: true
+
 ebean:
   test:
     platform: h2 #, h2, postgres, mysql, oracle, sqlserver
     ddlMode: dropCreate # none | dropCreate | create | migration | createOnly | migrationDropCreate
     dbName: db
+
+chaosServer:
+  googleClientId: 407408718192.apps.googleusercontent.com

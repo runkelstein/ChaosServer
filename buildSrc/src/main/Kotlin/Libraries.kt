@@ -25,10 +25,13 @@ val DependencyHandler.jacksonYamlLib : Dependency? get() =
     impl("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${Versions.Jackson}")
 
 val DependencyHandler.springBootStarterActuatorLib : Dependency? get() =
-    impl("org.springframework.boot:spring-boot-starter-actuator")
+    impl("org.springframework.boot:spring-boot-starter-actuator:${Versions.SpringBoot}")
 
 val DependencyHandler.springBootStarterWebLib : Dependency? get() =
-    impl("org.springframework.boot:spring-boot-starter-web")
+    impl("org.springframework.boot:spring-boot-starter-web:${Versions.SpringBoot}")
+
+val DependencyHandler.springBootStarterAOPLib : Dependency? get() =
+    impl("org.springframework.boot:spring-boot-starter-aop:${Versions.SpringBoot}")
 
 val DependencyHandler.kotlinReflectLib : Dependency? get() =
     impl("org.jetbrains.kotlin:kotlin-reflect")

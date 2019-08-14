@@ -16,6 +16,6 @@ object Versions {
     val MapStruct = "1.3.0.Final"
     val FeignJackson = "10.2.0"
 
-    val Karate = "0.9.2"
+    val Karate = "0.9.3"
 
 }

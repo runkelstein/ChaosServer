@@ -4,6 +4,9 @@ Feature: ChaosList Controller
   * url 'http://127.0.0.1:8080/'
   * configure logPrettyRequest = true
   * configure logPrettyResponse = true
+  #* configure headers = defaultHeaders()
+  * print idGoogleToken
+  * configure headers = { 'Content-Type': 'application/json', 'idGoogleToken': '#(idGoogleToken)' }
 
   Scenario: Fetch all lists for user
     Given  path '/chaosList/listing/1'

@@ -66,6 +66,7 @@ project(":server") {
         // implementation
         springBootStarterActuatorLib
         springBootStarterWebLib
+        springBootStarterAOPLib
         kotlinReflectLib
         kotlinJdk8Lib
         ebeanLib

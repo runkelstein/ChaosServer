@@ -1,5 +1,6 @@
 package com.chaoscorp.chaosServer.controller
 
+import com.chaoscorp.chaosServer.common.GoogleTokenVerifier
 import com.chaoscorp.chaosServer.data.model.User
 import com.chaoscorp.chaosServer.exception.ForbiddenException
 import com.chaoscorp.chaosServer.repositories.UserRepository
@@ -17,22 +18,15 @@ import org.springframework.beans.factory.annotation.Value
 @Component
 class AuthController(
     val userRepo : UserRepository,
-    val jsonFactory : JsonFactory,
-    val transport : HttpTransport,
-    @Value("\${chaosServer.googleClientId}") val clientId : String) {
+    val tokenVerifier : GoogleTokenVerifier) {
 
     @PostMapping("/googleSignin")
     @ResponseStatus(HttpStatus.OK)
     fun googleSignin(@RequestHeader(value="idGoogleToken")  googleToken : String) {
 
-        val verifier = GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-            .setAudience(listOf(clientId))
-            .build()
-
-        val idToken = verifier.verify(googleToken) ?:
+        val payload = tokenVerifier.verifyAndGetPayload(googleToken) ?:
             throw ForbiddenException("Access denied. No valid google token!")
 
-        val payload = idToken.payload;
         val user = User(
             googleUserId = payload.subject,
             email = payload.email,

@@ -17,6 +17,8 @@ class App {
 		@JvmStatic
 		fun runApp(args: Array<String>) : ConfigurableApplicationContext {
 			return runApplication<App>(*args)
+
+
 		}
 	}
 
