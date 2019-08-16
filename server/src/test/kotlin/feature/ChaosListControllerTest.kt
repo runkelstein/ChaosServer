@@ -1,7 +1,8 @@
-package feature
+package com.chaoscorp.chaosServer.feature
 
 import com.chaoscorp.chaosServer.App
 import com.chaoscorp.chaosServer.config.AppConfig
+import com.chaoscorp.chaosServer.testUtils.TestAppConfig
 import com.intuit.karate.KarateOptions
 import com.intuit.karate.junit4.Karate
 import org.junit.BeforeClass
@@ -9,7 +10,6 @@ import org.junit.runner.RunWith
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.TestContextManager
 
-import testUtils.TestAppConfig
 
 @RunWith(Karate::class)
 @KarateOptions(features = arrayOf("classpath:features/ChaosListController.feature"))

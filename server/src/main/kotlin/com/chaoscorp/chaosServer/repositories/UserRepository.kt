@@ -1,6 +1,5 @@
 package com.chaoscorp.chaosServer.repositories
 
-import com.chaoscorp.chaosServer.data.model.ChaosList
 import com.chaoscorp.chaosServer.data.model.User
 import io.ebean.BeanRepository
 import io.ebean.EbeanServer

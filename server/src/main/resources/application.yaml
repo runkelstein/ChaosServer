@@ -1,13 +1,16 @@
-spring:
-  h2.console:
-    enabled: true
-    path: /h2-console
+spring.profiles.active: dev
 
-  datasource:
-    url: jdbc:h2:~/test
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
+logging:
+  level.org.springframework: TRACE
+
+spring:
+
+#  datasource:
+#    url: jdbc:h2:tcp://localhost:9092/~/test
+#    driverClassName: org.h2.Driver
+#    username: sa
+#    password:
 
 chaosServer:
-  googleClientId: 580716329785-9miqrpmo48m5cu1uqabtigvgpna0m512.apps.googleusercontent.com
+  googleClientId: 407408718192.apps.googleusercontent.com
+  #googleClientId: 580716329785-9miqrpmo48m5cu1uqabtigvgpna0m512.apps.googleusercontent.com

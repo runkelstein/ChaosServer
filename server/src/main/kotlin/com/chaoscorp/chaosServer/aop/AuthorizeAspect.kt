@@ -15,7 +15,7 @@ class AuthorizeAspect(val tokenVerifier : GoogleTokenVerifier) {
 
     @Throws(Throwable ::class)
     @Around("@annotation(Authorize)")
-    fun authorize(joinPoint : ProceedingJoinPoint) : Any  {
+    fun authorize(joinPoint : ProceedingJoinPoint) : Any?  {
 
         val googleToken =
             (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes)

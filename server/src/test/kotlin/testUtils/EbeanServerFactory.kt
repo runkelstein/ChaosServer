@@ -1,4 +1,4 @@
-package com.chaoscorp.chaosServer.config
+package com.chaoscorp.chaosServer.testUtils
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile
 import org.springframework.core.io.ResourceLoader
 
 @Component
-@Profile("!unittesting")
+@Profile("unittesting")
 class EbeanServerFactory : FactoryBean<EbeanServer> {
 
     @Autowired
@@ -30,9 +30,21 @@ class EbeanServerFactory : FactoryBean<EbeanServer> {
 
         server = EbeanServerFactory.create(config)
 
+        importTestData();
+
         return server;
     }
 
+    fun importTestData() {
+        val fileResource = resourceLoader.getResource("classpath:ChaosTestData.sql");
+
+        if (!fileResource.isFile) {
+            return;
+        }
+
+        val sqlContent = fileResource.file.readLines().joinToString("\r\n")
+        server.execute(DB.sqlUpdate(sqlContent))
+    }
 
     override fun getObjectType(): Class<*>? {
         return EbeanServer::class.java
