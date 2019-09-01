@@ -14,7 +14,7 @@ object Versions {
     val HibernateJpaApi = "1.0.2.Final"
     val Jackson = "2.9.7"
     val MapStruct = "1.3.0.Final"
-    val FeignJackson = "10.2.0"
+    val Feign = "10.3.0"
 
     val Karate = "0.9.3"
 

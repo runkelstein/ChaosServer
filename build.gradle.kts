@@ -134,6 +134,7 @@ allprojects {
 project(":client") {
 
     dependencies {
+        feignOkHttpLib
         feignJacksonLib
         implementation(project(":api"))
     }

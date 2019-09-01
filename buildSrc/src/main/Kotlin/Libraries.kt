@@ -67,7 +67,10 @@ val DependencyHandler.mapstrucProcessorKaptLib : Dependency? get() =
     kapt("org.mapstruct:mapstruct-processor:${Versions.MapStruct}")
 
 val DependencyHandler.feignJacksonLib : Dependency? get() =
-    impl("io.github.openfeign:feign-jackson:${Versions.FeignJackson}")
+    impl("io.github.openfeign:feign-jackson:${Versions.Feign}")
+
+val DependencyHandler.feignOkHttpLib : Dependency? get() =
+    impl("io.github.openfeign:feign-okhttp:${Versions.Feign}")
 
 val DependencyHandler.googleApiClient : Dependency? get() =
     impl("com.google.api-client:google-api-client:${Versions.GoogleApiClient}")

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.*
 @ComponentScan("com.chaoscorp.chaosServer.testUtils")
 class TestAppConfig {
 
-    val fixedUnitTimestamp = 1564915340000L // 04.08.2019 12:42:20
+    val fixedUnitTimestamp = 1566116271000L // 04.08.2019 12:42:20
 
     @Bean()
     fun googleClock() : Clock {

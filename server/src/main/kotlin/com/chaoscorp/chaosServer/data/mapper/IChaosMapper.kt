@@ -2,7 +2,9 @@ package com.chaoscorp.chaosServer.data.mapper;
 
 import com.chaoscorp.chaosServer.api.dto.ChaosListDto
 import com.chaoscorp.chaosServer.api.dto.ChaosListSimpleDto
+import com.chaoscorp.chaosServer.api.dto.UserDto
 import com.chaoscorp.chaosServer.data.model.ChaosList
+import com.chaoscorp.chaosServer.data.model.User
 import org.mapstruct.InheritInverseConfiguration
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
@@ -18,4 +20,6 @@ interface IChaosMapper {
 
     @InheritInverseConfiguration(name = "convertToDto")
     fun convertToModel(list : ChaosListDto) : ChaosList
+
+    fun convertToDto(user : User) : UserDto
 }
