@@ -1,15 +1,18 @@
-spring.profiles.active: dev
+spring:
+  profiles.active: dev
 
 logging:
   level.org.springframework: TRACE
 
-spring:
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:keystore.jks
+    key-store-type: JKS
+    key-store-password: chaos42
+    key-alias: selfsigned
 
-#  datasource:
-#    url: jdbc:h2:tcp://localhost:9092/~/test
-#    driverClassName: org.h2.Driver
-#    username: sa
-#    password:
+security.require-ssl: true
 
 chaosServer:
   googleClientId: 407408718192.apps.googleusercontent.com
