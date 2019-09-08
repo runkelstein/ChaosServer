@@ -54,6 +54,7 @@ class ChaosListController(
     @ResponseStatus(HttpStatus.OK)
     fun getList(@PathVariable id : Long) : ChaosListDto
     {
+        // todo: find by id and idUser!
         val list = listRepo.findById(id) ?:
             throw EntityNotFoundException("List $id does not exist")
 

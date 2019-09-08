@@ -54,6 +54,10 @@ val DependencyHandler.ebeanQueryGeneratorKaptLib : Dependency? get() =
 val DependencyHandler.h2DataBaseLib : Dependency? get() =
     impl("com.h2database:h2")
 
+val DependencyHandler.mySQLConnectorLib : Dependency? get() =
+    impl("mysql:mysql-connector-java:${Versions.MySQL}")
+
+
 val DependencyHandler.mapstructLib : Dependency? get() =
     impl("org.mapstruct:mapstruct:${Versions.MapStruct}")
 

@@ -12,7 +12,7 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table(name="User")
+@Table(name="user")
 data class User(
 
     @Id

@@ -1,4 +1,4 @@
-package com.chaoscorp.chaosServer.aop
+package features
 
 import com.chaoscorp.chaosServer.common.GoogleTokenVerifier
 import com.chaoscorp.chaosServer.exception.ForbiddenException
@@ -12,23 +12,13 @@ import org.springframework.web.context.request.ServletRequestAttributes
 
 @Aspect
 @Component
-@Profile("!unittesting")
+@Profile("unittesting")
 class AuthorizeAspect(val tokenVerifier : GoogleTokenVerifier) {
 
     @Throws(Throwable ::class)
     @Around("@annotation(Authorize)")
     fun authorize(joinPoint : ProceedingJoinPoint) : Any?  {
-
-        val googleToken =
-            (RequestContextHolder.getRequestAttributes() as ServletRequestAttributes)
-                .request.getHeader("idGoogleToken")
-
-        if (googleToken!=null && tokenVerifier.verify(googleToken)) {
-            return joinPoint.proceed();
-        } else {
-            throw ForbiddenException("Invalid Google Token")
-        }
-
+        return joinPoint.proceed();
     }
 
 }

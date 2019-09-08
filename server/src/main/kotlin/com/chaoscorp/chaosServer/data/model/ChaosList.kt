@@ -5,7 +5,7 @@ import io.ebean.annotation.DbJson
 import io.ebean.annotation.DbJsonType
 import javax.persistence.*
 
-@Entity @Table(name="ChaosList")
+@Entity @Table(name="chaoslist")
 data class ChaosList(
 
     @Id

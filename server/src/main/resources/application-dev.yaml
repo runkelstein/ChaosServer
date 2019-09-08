@@ -1,0 +1,12 @@
+logging:
+  level.org.springframework: TRACE
+
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:selfsigned.jks
+    key-store-type: JKS
+    key-store-password: chaos42
+    key-alias: selfsigned
+
+security.require-ssl: true

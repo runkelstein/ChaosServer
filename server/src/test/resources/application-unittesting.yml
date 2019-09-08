@@ -2,6 +2,11 @@ spring.profiles.active: unittesting
 
 spring.main.allow-bean-definition-overriding: true
 
+server:
+  port: 8080
+
+security.require-ssl: false
+
 ebean:
   test:
     platform: h2 #, h2, postgres, mysql, oracle, sqlserver

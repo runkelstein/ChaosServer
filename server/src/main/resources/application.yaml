@@ -1,18 +1,5 @@
-spring:
-  profiles.active: dev
-
 logging:
   level.org.springframework: TRACE
-
-server:
-  port: 8443
-  ssl:
-    key-store: classpath:keystore.jks
-    key-store-type: JKS
-    key-store-password: chaos42
-    key-alias: selfsigned
-
-security.require-ssl: true
 
 chaosServer:
   googleClientId: 407408718192.apps.googleusercontent.com

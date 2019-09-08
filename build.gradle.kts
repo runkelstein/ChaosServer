@@ -73,6 +73,7 @@ project(":server") {
         ebeanQueryLib
         hibernateJpaApiLib
         h2DataBaseLib
+        mySQLConnectorLib
         mapstructLib
         mapstrucProcessorKaptLib
         ebeanQueryGeneratorKaptLib
@@ -101,6 +102,7 @@ project(":server") {
 
     application {
         mainClassName = "${Properties.groupId}.App"
+        applicationDefaultJvmArgs = listOf("-Dspring.profiles.active=dev")
     }
 
 }

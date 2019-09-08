@@ -17,5 +17,5 @@ object Versions {
     val Feign = "10.3.0"
 
     val Karate = "0.9.3"
-
+    val MySQL = "8.0.17"
 }
