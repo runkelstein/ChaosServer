@@ -1,0 +1,6 @@
+logging:
+  level.org.springframework: INFO
+  file: /opt/chaoscorp/chaosserver/log/chaosserver.log
+  
+server:
+  port: 8042

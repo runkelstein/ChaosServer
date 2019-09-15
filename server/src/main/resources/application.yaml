@@ -1,5 +1,8 @@
 logging:
-  level.org.springframework: TRACE
+  level.org.springframework: DEBUG
+
+server:
+  port: 8042
 
 chaosServer:
   googleClientId: 407408718192.apps.googleusercontent.com
