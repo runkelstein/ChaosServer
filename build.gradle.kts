@@ -58,6 +58,7 @@ project(":server") {
         plugin(springBootPluginId)
         plugin(kotlinKaptPluginId)
         plugin(ebeanPluginId)
+        
         plugin(springDependencyPluginId)
         plugin("application")
     }
@@ -128,6 +129,19 @@ allprojects {
                     from(components["java"])
                 }
             }
+
+            repositories {
+                maven {
+                    url = uri("https://chaoscorp.org:743")
+                    // credentials need to be put into the USER_HOME/.gradle/gradle.properties file
+                    // because of security concerns they can not be stored in the scm
+                    credentials {
+                        username = System.getProperty("chaosMavenUser")
+                        password = System.getProperty("chaosMavenPassword")
+                    }
+                }
+            }
+
         }
     }
 

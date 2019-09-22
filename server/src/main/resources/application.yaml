@@ -5,5 +5,4 @@ server:
   port: 8042
 
 chaosServer:
-  googleClientId: 407408718192.apps.googleusercontent.com
-  #googleClientId: 580716329785-9miqrpmo48m5cu1uqabtigvgpna0m512.apps.googleusercontent.com
+  googleClientId: 683726251045-5j13qabg3ci39rjulvftq7cj7t5t90o0.apps.googleusercontent.com
